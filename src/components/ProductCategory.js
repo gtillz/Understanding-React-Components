@@ -18,7 +18,7 @@ class ProductCategory extends Component {
     }
 
     render() {
-        const {category, renderComponent, searchInput} = this.props;
+        const {category, renderComponent, searchInput, filteredProducts} = this.props;
         const {department, products} = category;
         return (
             <li style={borderStyle}>
@@ -27,12 +27,9 @@ class ProductCategory extends Component {
                 </div>
                 <ul className="collapsible popout " data-collapsible="accordion" style={padding}>
                 {
-                    (searchInput) ?
-                        products.filter(product=>{
-                            return  product.item.toLowerCase().includes(searchInput.toLowerCase()) ||
-                                    product.price.toString().includes(searchInput);
-                        }).map((foundProduct, index)=>{
-                            return <Product key={foundProduct.item} name={foundProduct.item} price={foundProduct.price} availibility={foundProduct.inStock} renderComponent={renderComponent}/>
+                    (filteredProducts) ?
+                        filteredProducts.map((product, index)=>{
+                            return <Product key={product.item} name={product.item} price={product.price} availibility={product.inStock} renderComponent={renderComponent}/>
                         }) 
                     :
                         products.map(product=>{
@@ -52,6 +49,7 @@ ProductCategory.propTypes = {
     searchInput: PropTypes.string.isRequired,
     category: PropTypes.object.isRequired,
     renderComponent: PropTypes.func.isRequired,
+    filteredProducts: PropTypes.array.isRequired,
 };
 
 export default ProductCategory;

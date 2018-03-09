@@ -20,13 +20,18 @@ class Directory extends Component {
 
     render() {
         const {inventory, renderComponent, searchInput} = this.props;
+
         return (
             <li className='directory' style ={borderStyle}>
                 <div className="collapsible-header"><div>Item</div><div>Price</div></div>
                <ul className="collapsible popout" data-collapsible="accordion" style={padding}>
                 {
                     inventory.map((category, i)=>{
-                        return <ProductCategory key={i} category={category} renderComponent={renderComponent} searchInput={searchInput}/>
+                        let filteredProducts = category.products.filter(product=>{
+                            return  product.item.toLowerCase().includes(searchInput.toLowerCase()) ||
+                                    product.price.toString().includes(searchInput);
+                        });             
+                        return !!filteredProducts.length && <ProductCategory key={i} category={category} renderComponent={renderComponent} searchInput={searchInput} filteredProducts={filteredProducts}/>
                     })
                 }
                 </ul>

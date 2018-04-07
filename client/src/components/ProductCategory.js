@@ -25,7 +25,7 @@ class ProductCategory extends Component {
     }
 
     render() {
-        const {category, renderComponent, searchInput, filteredProducts} = this.props;
+        const {category, renderComponent, filteredProducts} = this.props;
         const {department, products} = category;
         return (
             <li style={styles.borderStyle}>
@@ -53,7 +53,6 @@ class ProductCategory extends Component {
 }
 
 ProductCategory.propTypes = {
-    searchInput: PropTypes.string.isRequired,
     category: PropTypes.object.isRequired,
     renderComponent: PropTypes.func.isRequired,
     filteredProducts: PropTypes.array.isRequired,

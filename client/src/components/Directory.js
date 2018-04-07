@@ -12,8 +12,11 @@ const styles = {
         flexDirection: 'row',
         fontWeight: 'bold',     
     },
-    item: {
-        margin: '0 4em' 
+    itemLeft: {
+        marginLeft: '4em' 
+    },
+    itemRight: {
+        marginRight: '4em' 
     }
 }
 
@@ -31,8 +34,8 @@ class Directory extends Component {
         return (
             <li className='directory row' style ={styles.borderStyle}>
                 <div className="collapsible-header" style={styles.header}>
-                    <div style={styles.item}>Item</div>
-                    <div style={styles.item}>Price</div>
+                    <div style={styles.itemLeft}>Item</div>
+                    <div style={styles.itemRight}>Price</div>
                 </div>
                 <ul className="collapsible popout" data-collapsible="accordion">
                 {

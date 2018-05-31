@@ -34,7 +34,7 @@ file_paths.forEach(path =>{
 /*-------- ENDPONTS -------- */
 
 app.get('/component/:fileName', (req, res)=>{
-    const {fileName} = req.params;
+    const fileName = req.params.fileName;
         if(cache[fileName]){
             res.status(200).send(cache[fileName]);
         } else {
